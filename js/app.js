@@ -52,11 +52,13 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-    const sum = a+b+c;
-    const prod = a*b*c;
-    const msjSum = a+' and '+b+' and '+c+' sum to '+sum+'.';
+    let suma = sum(a,b)[0];
+    suma = sum(suma,c)[0];
+    let prod = multiply(a,b)[0];
+    prod = multiply(prod,c)[0];
+    const msjSum = a+' and '+b+' and '+c+' sum to '+suma+'.';
     const msjMult = 'The product of '+a+' and '+b+' and '+c+' is '+prod+'.';
-    return [sum,prod,msjSum,msjMult];
+    return [suma,prod,msjSum,msjMult];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -78,9 +80,10 @@ Test this function by hand in the console to get it working, and when you think 
 let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
-    const sum = sumArr[0]+sumArr[1]+sumArr[2];
-    const msj = sumArr[0]+','+sumArr[1]+','+sumArr[2]+' was passed in as an array of numbers, and '+sum+' is their sum.';
-    return [sum,msj];
+    let suma = sum(sumArr[0],sumArr[1])[0];
+    suma = sum(suma,sumArr[2])[0];
+    const msj = sumArr[0]+','+sumArr[1]+','+sumArr[2]+' was passed in as an array of numbers, and '+suma+' is their sum.';
+    return [suma,msj];
 }
 
 // Here is the test for sumArray(); uncomment it to run it
@@ -101,7 +104,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-    const prod = multArr[0]*multArr[1]*multArr[2];
+    let prod = multiply(multArr[0],multArr[1])[0];
+    prod = multiply(prod,multArr[2])[0];
     const msj = 'The numbers '+multArr[0]+','+multArr[1]+','+multArr[2]+' have a product of '+prod+'.';
     return [prod,msj];
 }
@@ -134,11 +138,11 @@ function multiplyAnyArray(dynamicArray) { //eslint-disable-line
     let prod = 1;
     let cadena = null;
     for(let i=0; i<dynamicArray.length; i++){
-        prod = prod*dynamicArray[i];
+        prod = multiply(prod,dynamicArray[i])[0];
         if (i != dynamicArray.length-1) {
-            cadena = cadena+dynamicArray[i]+',';
+            cadena = sum(cadena,dynamicArray[i])[0]+',';
         } else {
-            cadena = cadena+dynamicArray[i];
+            cadena = sum(cadena,dynamicArray[i])[0];
         }
     }
     const msj = 'The numbers '+cadena+' have a product of '+prod+'.';
